@@ -1,0 +1,10 @@
+## General Project Requirements
+pandas==2.0.3
+gradio==3.37.0
+pandas==2.0.3
+
+## OpenAI Requirements
+openai==0.28.0
+
+## HL7 Requirements
+Faker==22.6.0

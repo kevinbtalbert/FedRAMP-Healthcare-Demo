@@ -1,0 +1,17 @@
+name: Healthcare Demo
+
+entries:
+  - title: Healthcare Demo
+    label: healthcare-demo
+    short_description: |
+      This AMP is used for Healthcare Demonstrations in CDF and CML.
+    long_description: |
+      This AMP is used for Healthcare Demonstrations in CDF and CML.
+    image_path: "https://raw.githubusercontent.com/kevinbtalbert/Healthcare-Demo/main/assets/amp-cover.png"
+    tags: 
+      - CML Labs
+      - Exercises
+      - Demos
+    git_url: "https://github.com/kevinbtalbert/Healthcare-Demo"
+    is_prototype: true
+    
