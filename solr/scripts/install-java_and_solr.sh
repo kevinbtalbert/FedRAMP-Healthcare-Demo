@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-
 source /home/cdsw/solr/scripts/set_solr_env.sh
 
 JAVA_TGZ=openjdk-${JAVA_VER}_linux-x64_bin.tar.gz
@@ -15,19 +14,15 @@ mkdir solr-app 2>/dev/null
 cd solr-app
 
 ## Install Java ##
-wget --no-verbose -O ${JAVA_TGZ} ${JAVA_DL_URL}
+curl -L -o ${JAVA_TGZ} ${JAVA_DL_URL}
 tar xzf ${JAVA_TGZ} && rm ${JAVA_TGZ}
 
-
 ## Install Solr ##
-wget --no-verbose -O ${SOLR_TGZ} ${SOLR_DL_URL}
-tar xzf ${SOLR_TGZ} && rm solr-${SOLR_VER}.tgz
+curl -L -o ${SOLR_TGZ} ${SOLR_DL_URL}
+tar xzf ${SOLR_TGZ} && rm ${SOLR_TGZ}
 
 ## Install Banana ##
-cd solr-${SOLR_VER}
-cd server
-cd solr-webapp
-cd webapp
+cd solr-${SOLR_VER}/server/solr-webapp/webapp
 git clone ${BANANA_GIT}
 
 ## Setup Banana Dashboard

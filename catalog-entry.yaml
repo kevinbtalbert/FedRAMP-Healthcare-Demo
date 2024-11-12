@@ -1,17 +1,17 @@
-name: Healthcare Demo
+name: Healthcare Demo FedRAMP
 
 entries:
-  - title: Healthcare Demo
-    label: healthcare-demo
+  - title: Healthcare Demo FedRAMP
+    label: healthcare-demo-fedramp
     short_description: |
-      This AMP is used for Healthcare Demonstrations in CDF and CML.
+      This AMP is used for Healthcare Demonstrations on the CGSI FedRAMP env.
     long_description: |
-      This AMP is used for Healthcare Demonstrations in CDF and CML.
-    image_path: "https://raw.githubusercontent.com/kevinbtalbert/Healthcare-Demo/main/assets/amp-cover.png"
+      This AMP is used for Healthcare Demonstrations on the CGSI FedRAMP env.
+    image_path: "https://raw.githubusercontent.com/kevinbtalbert/FedRAMP-Healthcare-Demo/main/assets/amp-cover.png"
     tags: 
       - CML Labs
       - Exercises
       - Demos
-    git_url: "https://github.com/kevinbtalbert/Healthcare-Demo"
+    git_url: "https://github.com/kevinbtalbert/FedRAMP-Healthcare-Demo"
     is_prototype: true
     
