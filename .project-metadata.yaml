@@ -1,0 +1,69 @@
+name: Healthcare Demo FedRAMP
+description: "Healthcare demo showcasing Nifi, CML, Solr, and Generative AI functionalities."
+author: "Cloudera"
+date: "2024-1-29"
+specification_version: 1.0
+prototype_version: 1.0
+environment_variables:
+  OPENAI_KEY:
+    default: ""
+    description: "Access key ID for interacting with OpenAI"
+  DEMO_PROJECT_NAME:
+    default: "Healthcare Demo"
+    description: "Project Name: It is crucial that this variable match the title you are calling the AMP. This is how the CML API will locate the Solr instance this AMP creates."
+
+runtimes: 
+  - editor: JupyterLab
+    kernel: Python 3.10
+    edition: Nvidia GPU
+  
+tasks:
+  - type: run_session
+    name: Install Dependencies
+    script: 0_session-install-deps/install_dependencies.py
+    short_summary: Install Dependencies
+    kernel: python3
+    cpu: 2
+    memory: 12
+
+  - type: run_session
+    name: Download/Install Solr and Load Bananna UI
+    script: solr/01_install-java11_n_solr.py
+    short_summary: Install Java 11
+    kernel: python3
+    cpu: 2
+    memory: 4
+
+  - type: start_application
+    name: Solr
+    subdomain: solr-app
+    script: solr/02_start-solr-application.py
+    short_summary: Create and start Solr / Banana
+    long_summary: Create and start frontend application. Append /solr/banana/src/index.html#/dashboard to root URL to access Banana UI. Remember to enable unauthenticated app access for external access to the UI.
+    cpu: 2
+    memory: 4
+    environment_variables:
+      TASK_TYPE: START_APPLICATION
+
+  - type: start_application
+    name: Physician Portal
+    subdomain: physician-portal
+    script: 3_apps/physician_portal.py
+    short_summary: Create and start frontend application
+    long_summary: Create and start frontend application. Remember to enable unauthenticated app access for external access to the UI.
+    cpu: 2
+    memory: 4
+    environment_variables:
+      TASK_TYPE: START_APPLICATION
+
+  - type: create_job
+    name: Execute Solr Scripts
+    entity_label: execute-solr-scripts
+    script: 4_solr/execute-solr-scripts.py
+    arguments: None
+    short_summary: Job to create Solr collection, add data, and setup stopwords. IMPORTANT! Only run after setting up unauthenticated app access.
+    long_summary: Job to create Solr collection, add data, and setup stopwords. IMPORTANT! Only run after setting up unauthenticated app access.
+    cpu: 2
+    memory: 4
+    environment:
+      TASK_TYPE: CREATE/RUN_JOB
